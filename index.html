@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADHD AI Follow-Up & Sales Assistant Kit</title>
+  <meta name="description" content="A $19 early-access AI kit for ADHD entrepreneurs who need help drafting follow-ups, proposal nudges, invoice reminders, client replies, pricing boundaries, and scope messages." />
+  <meta property="og:title" content="ADHD AI Follow-Up & Sales Assistant Kit" />
+  <meta property="og:description" content="Use AI this week to find one stale revenue loop, draft the awkward message, and move a follow-up, proposal, invoice, or client reply forward." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --ink: #171321;
+      --muted: #5f5a6b;
+      --paper: #fffaf0;
+      --card: #ffffff;
+      --accent: #6d35ff;
+      --accent-dark: #4b20c8;
+      --green: #17a36b;
+      --line: rgba(23, 19, 33, 0.14);
+      --shadow: 0 22px 70px rgba(45, 31, 93, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(109, 53, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 88% 12%, rgba(23, 163, 107, 0.16), transparent 30%),
+        linear-gradient(180deg, #fffaf0 0%, #f6f0ff 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0 10px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--ink);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      box-shadow: 0 10px 28px rgba(23, 19, 33, 0.2);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
+      padding: 62px 0 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(109, 53, 255, 0.1);
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      margin: 0 0 24px;
+      max-width: 850px;
+    }
+
+    .subhead {
+      font-size: clamp(19px, 2.2vw, 25px);
+      color: var(--muted);
+      margin: 0 0 28px;
+      max-width: 690px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin: 26px 0 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      padding: 15px 23px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 18px 46px rgba(109, 53, 255, 0.35);
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); background: var(--accent-dark); }
+
+    .price-note {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .mini-proof {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin: 0 0 14px;
+    }
+
+    .message-stack {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+    }
+
+    .message {
+      background: #f7f3ff;
+      border: 1px solid rgba(109, 53, 255, 0.14);
+      border-radius: 18px;
+      padding: 14px 15px;
+      color: #2a2438;
+      font-weight: 700;
+    }
+
+    .message:nth-child(2) { background: #eefbf6; border-color: rgba(23, 163, 107, 0.18); }
+    .message:nth-child(3) { background: #fff5dc; border-color: rgba(240, 164, 38, 0.22); }
+
+    section { padding: 52px 0; }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      margin: 0 0 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 19px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 14px 42px rgba(45, 31, 93, 0.08);
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .panel p { margin: 0; color: var(--muted); }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 17px;
+    }
+
+    .check {
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: rgba(23, 163, 107, 0.13);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .feature strong { display: block; margin-bottom: 3px; }
+    .feature span { color: var(--muted); }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      position: relative;
+      background: var(--ink);
+      color: white;
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 190px;
+      overflow: hidden;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      right: 16px;
+      top: 8px;
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 86px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .step strong { display: block; font-size: 20px; margin-bottom: 8px; }
+    .step p { color: rgba(255, 255, 255, 0.76); margin: 0; }
+
+    .offer {
+      background: var(--ink);
+      color: white;
+      border-radius: 34px;
+      padding: clamp(26px, 5vw, 54px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .offer h2 { color: white; }
+    .offer p { color: rgba(255, 255, 255, 0.76); }
+    .offer .button { background: white; color: var(--ink); box-shadow: none; }
+    .offer .button:hover { background: #f2ebff; }
+
+    .price {
+      font-size: 56px;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      text-align: center;
+    }
+
+    .faq {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    details {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    footer {
+      padding: 34px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 880px) {
+      .hero, .offer { grid-template-columns: 1fr; }
+      .grid, .steps { grid-template-columns: 1fr 1fr; }
+      .feature-list, .faq { grid-template-columns: 1fr; }
+      .price { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 1120px); }
+      nav { align-items: flex-start; }
+      .nav-cta { display: none; }
+      .hero { padding-top: 42px; }
+      .grid, .steps { grid-template-columns: 1fr; }
+      .cta-row { align-items: stretch; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Primary navigation">
+        <div class="brand"><div class="mark">AI</div><span>Hyperfocus Media</span></div>
+        <a class="nav-cta" href="https://buy.stripe.com/7sYbJ25Vi4ZW2rL3al9AA12">Get early access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap" style="display: contents;">
+        <div>
+          <div class="eyebrow">$19 early access · built for ADHD entrepreneurs</div>
+          <h1>Stop letting ADHD make the money messages disappear.</h1>
+          <p class="subhead">Use AI this week to find one stale revenue loop, draft the awkward message, and move a follow-up, proposal, invoice, or client reply forward without relying on memory or motivation.</p>
+          <div class="cta-row">
+            <a class="button" href="https://buy.stripe.com/7sYbJ25Vi4ZW2rL3al9AA12">Get the $19 early-access kit</a>
+            <span class="price-note">Tiny kit. No giant AI course.</span>
+          </div>
+          <p class="mini-proof">For freelancers, coaches, consultants, creators, and solo founders who already know the money is stuck in the message they are avoiding.</p>
+        </div>
+
+        <aside class="hero-card" aria-label="What this helps with">
+          <p class="card-title">The messages this kit helps you draft:</p>
+          <div class="message-stack">
+            <div class="message">“Just checking in on the proposal I sent…”</div>
+            <div class="message">“Quick reminder on the invoice due last week…”</div>
+            <div class="message">“That request is outside the original scope…”</div>
+            <div class="message">“Here’s the next step if you want to move forward…”</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>This is for the business message sitting in drafts.</h2>
+          <p class="lead">Not generic content. Not a giant prompt library. The kit is focused on revenue-adjacent messages ADHD entrepreneurs avoid, forget, overthink, or leave half-written.</p>
+        </div>
+        <div class="grid">
+          <div class="panel"><h3>Forgotten follow-ups</h3><p>Warm leads, dormant clients, and “I should check in” moments stop living only in your head.</p></div>
+          <div class="panel"><h3>Awkward money messages</h3><p>Invoice nudges, proposal replies, and pricing boundaries get a first draft before emotion freezes the task.</p></div>
+          <div class="panel"><h3>Open revenue loops</h3><p>Use AI to identify what is unresolved, who needs a response, and what message moves the loop forward.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What you get in the first version</h2>
+          <p class="lead">Early access gives you the practical workflows first. Small enough to use, specific enough to matter.</p>
+        </div>
+        <div class="feature-list">
+          <div class="feature"><div class="check">✓</div><div><strong>Open Loop Sweep</strong><span>A 20-minute checklist for stale leads, unsent replies, unpaid invoices, half-finished proposals, and pricing/scope messages.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>AI Context Setup Prompt</strong><span>Tell AI what you sell, who you help, your tone, your stuck points, and how to reduce emotional friction.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>Follow-Up Drafting Workflow</strong><span>Stale lead follow-up, warm prospect check-in, proposal nudge, and dormant client reactivation prompts.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>Invoice & Payment Nudges</strong><span>Polite reminders, firmer second reminders, and “checking on payment status” messages.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>Proposal Rescue Workflow</strong><span>Turn messy half-proposals or voice notes into clean client-facing messages.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>Pricing & Scope Boundaries</strong><span>Prompts for discount requests, scope creep, rate increases, and “outside scope” replies.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>RSD Buffer Rules</strong><span>AI drafts first; you edit after a pause; send or schedule before reopening the decision loop.</span></div></div>
+          <div class="feature"><div class="check">✓</div><div><strong>Follow-Up Tracker</strong><span>Track the opportunity, money tied to the loop, draft, send date, and status.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p class="lead">The goal is one useful AI-assisted business action in under 30 minutes.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>Find the loop</strong><p>Run the open-loop sweep across inbox, notes, DMs, proposals, and invoices.</p></div>
+          <div class="step"><strong>Give AI context</strong><p>Paste the setup prompt so AI writes like a useful assistant, not a generic robot.</p></div>
+          <div class="step"><strong>Draft the message</strong><p>Use the workflow for follow-up, invoice, proposal, pricing, or scope.</p></div>
+          <div class="step"><strong>Send or schedule</strong><p>Edit lightly, send the message, and log the loop so it stops living in memory.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="offer">
+          <div>
+            <h2>Get early access for $19</h2>
+            <p>Buy the first version now and help shape which workflow gets built deepest first: follow-ups, proposals, invoices, client replies, pricing boundaries, or scope creep.</p>
+            <div class="cta-row">
+              <a class="button" href="https://buy.stripe.com/7sYbJ25Vi4ZW2rL3al9AA12">Get the kit</a>
+              <span class="price-note" style="color: rgba(255,255,255,.72);">Secure checkout via Stripe</span>
+            </div>
+          </div>
+          <div class="price">$19</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>FAQ</h2>
+        </div>
+        <div class="faq">
+          <details open><summary>Is this an AI course?</summary><p>No. It is a small implementation kit: prompts, workflows, and a tracker for the messages that move money.</p></details>
+          <details><summary>Do I need a specific AI tool?</summary><p>No. The prompts are written for common chat-based AI tools like ChatGPT, Claude, Gemini, or similar assistants.</p></details>
+          <details><summary>What happens after I buy?</summary><p>You get early access to the first version and updates during validation as the highest-demand workflows get built out.</p></details>
+          <details><summary>Why ADHD entrepreneurs?</summary><p>Generic AI advice assumes the hard part is writing a better prompt. For ADHD entrepreneurs, the hard part is often remembering the loop, starting the message, and getting through the emotional friction.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Hyperfocus Media · ADHD AI Follow-Up & Sales Assistant Kit · Early-access validation offer</div>
+  </footer>
+</body>
+</html>
