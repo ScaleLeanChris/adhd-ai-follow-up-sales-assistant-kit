@@ -317,6 +317,23 @@
       text-align: center;
     }
 
+    .sample { padding: 18px 0 52px; }
+
+    .sample-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: clamp(22px, 4vw, 36px);
+      box-shadow: var(--shadow);
+    }
+
+    .sample-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
     .faq {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -349,7 +366,7 @@
     @media (max-width: 880px) {
       .hero, .offer { grid-template-columns: 1fr; }
       .grid, .steps { grid-template-columns: 1fr 1fr; }
-      .feature-list, .faq { grid-template-columns: 1fr; }
+      .feature-list, .sample-grid, .faq { grid-template-columns: 1fr; }
       .price { text-align: left; }
     }
 
@@ -397,6 +414,25 @@
             <div class="message">“Here’s the next step if you want to move forward…”</div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section class="sample" id="try-one-message">
+      <div class="wrap">
+        <div class="sample-card">
+          <p class="eyebrow">Try the shape of it before you buy</p>
+          <h2>One stuck message. One AI-assisted first draft.</h2>
+          <p class="lead">The kit gives you repeatable workflows, but the basic move is simple: name the loop, give AI the right context, and let it make the first draft less emotionally expensive.</p>
+          <div class="sample-grid">
+            <div class="panel"><h3>Stuck loop</h3><p>“A client asked for extra work outside scope. I need to respond without sounding rude or overexplaining.”</p></div>
+            <div class="panel"><h3>AI context</h3><p>“Write a warm, firm reply. Keep it short. Assume I like the client, but the request is outside the original agreement. Give one next step.”</p></div>
+            <div class="panel"><h3>Sendable draft</h3><p>“Happy to help with that. It’s outside the original scope, so I can either add it as a separate mini-project or we can keep this round focused on the original deliverable. If you want, I can send a quick estimate for the extra piece.”</p></div>
+          </div>
+          <div class="cta-row">
+            <a class="button" href="https://buy.stripe.com/7sYbJ25Vi4ZW2rL3al9AA12">Get the $19 kit</a>
+            <span class="price-note">For follow-ups, invoice nudges, proposal replies, pricing boundaries, and scope messages.</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -473,6 +509,7 @@
           <details open><summary>Is this an AI course?</summary><p>No. It is a small implementation kit: prompts, workflows, and a tracker for the messages that move money.</p></details>
           <details><summary>Do I need a specific AI tool?</summary><p>No. The prompts are written for common chat-based AI tools like ChatGPT, Claude, Gemini, or similar assistants.</p></details>
           <details><summary>What happens after I buy?</summary><p>You get early access to the first version and updates during validation as the highest-demand workflows get built out.</p></details>
+          <details><summary>What if I do not know which message to send first?</summary><p>Start with the Open Loop Sweep. Pick the loop with money, trust, or a waiting client attached. Then use the matching workflow to draft only that message before opening another loop.</p></details>
           <details><summary>Why ADHD entrepreneurs?</summary><p>Generic AI advice assumes the hard part is writing a better prompt. For ADHD entrepreneurs, the hard part is often remembering the loop, starting the message, and getting through the emotional friction.</p></details>
         </div>
       </div>
